@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+src/datylias/__init__.py
+src/datylias.egg-info/PKG-INFO
+src/datylias.egg-info/SOURCES.txt
+src/datylias.egg-info/dependency_links.txt
+src/datylias.egg-info/top_level.txt
