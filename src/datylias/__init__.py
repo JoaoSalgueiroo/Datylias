@@ -1,40 +1,37 @@
-#Datylias python module
+#Datalyas module
 
-def qword(data: list, index: int) -> list:
-    return data[index: index+8]
+from z3 import Concat, BitVecRef
 
-def dword(data: list, index: int) -> list: 
-    return data[index: index+4]
+def qword(data: list[BitVecRef], index: int) -> BitVecRef:
+    return Concat(*data[index:index+8])
 
-def hidword(data: list, index: int) -> list:
-    qword = data[index: index+8]
-    return qword[4:8]
+def dword(data: list[BitVecRef], index: int) -> BitVecRef:
+    return Concat(*data[index:index+4])
 
-def lodword(data: list, index: int) -> list:
-    qword = data[index: index+8]
-    return qword[0:4]
+def hidword(data: list[BitVecRef], index: int) -> BitVecRef:
+    return Concat(*data[index+4:index+8])
 
-def word(data: list, index: int) -> list:
-    return data[index: index+2]
+def lodword(data: list[BitVecRef], index: int) -> BitVecRef:
+    return Concat(*data[index:index+4])
 
-def loword(data: list, index: int) -> list:
-    dword = data[index: index+4]
-    return dword[0:2]
+def word(data: list[BitVecRef], index: int) -> BitVecRef:
+    return Concat(*data[index:index+2])
 
-def hiword(data: list, index: int) -> list:
-    dword = data[index: index+4]
-    return dword[2:4]
+def loword(data: list[BitVecRef], index: int) -> BitVecRef:
+    return Concat(*data[index:index+2])
 
-def byte(data: list, index: int) -> int:
+def hiword(data: list[BitVecRef], index: int) -> BitVecRef:
+    return Concat(*data[index+2:index+4])
+
+def byte(data: list[BitVecRef], index: int) -> BitVecRef:
     return data[index]
 
-def lobyte(data: list, index: int) -> int:
-    word = data[index: index+2]
-    return word[0]
+def lobyte(data: list[BitVecRef], index: int) -> BitVecRef:
+    return data[index]
 
-def hibyte(data: list, index: int) -> int:
-    word = data[index: index+2]
-    return word[1]
+def hibyte(data: list[BitVecRef], index: int) -> BitVecRef:
+    return data[index+1]
+
 
 __all__ = [
     "qword", "dword", "hidword", "lodword",
